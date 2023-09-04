@@ -29,7 +29,14 @@ class MainActivity : AppCompatActivity() {
             tab.text = viewPagerAdapter.getTitle(position)
         }.attach()
 
-        floatingActionButton
+        floatingActionButton.setOnClickListener {
+            val addDialog = AddDialog(object : AddDialog.AddDialogInterface{
+                override fun onSaveButtonClicked() {
+
+                }
+            })
+            addDialog.show(this@MainActivity.supportFragmentManager,"ConfirmDialog")
+        }
     }
 
     override fun onBackPressed() {
