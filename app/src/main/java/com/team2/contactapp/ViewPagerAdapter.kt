@@ -12,6 +12,7 @@ class ViewPagerAdapter(
 
     init {
         fragments.add(MainTabs(ContactFragment.newInstance(),"Contact"))
+        fragments.add(MainTabs(DetailFragment.newInstance(SampleData.userList[0]),"My Page"))
     }
 
     fun getTitle(position: Int): String {
