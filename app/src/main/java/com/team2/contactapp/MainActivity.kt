@@ -6,7 +6,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.team2.contactapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     private val viewPagerAdapter by lazy {
         ViewPagerAdapter(this)
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    private fun initViews() = with(binding){
+    private fun initViews() = with(binding) {
         mainToolbar.title = "SpartaContacts"
         mainViewpager.adapter = viewPagerAdapter
 
@@ -30,5 +30,14 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
         floatingActionButton
+    }
+
+    override fun onBackPressed() {
+        val currentFragment = viewPagerAdapter.getFragment(binding.mainTab.selectedTabPosition)
+        if (currentFragment is ContactFragment && currentFragment.childFragmentManager.backStackEntryCount >= 1) {
+            currentFragment.childFragmentManager.popBackStackImmediate()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
