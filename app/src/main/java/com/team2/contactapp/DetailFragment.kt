@@ -11,7 +11,8 @@ import com.team2.contactapp.databinding.FragmentDetailBinding
 private const val ARG_PARAM1 = "User"
 
 class DetailFragment : Fragment() {
-    private var binding: FragmentDetailBinding? = null
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
     private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +30,8 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentDetailBinding.inflate(layoutInflater,container,false)
-        return binding?.root
+        _binding = FragmentDetailBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +45,7 @@ class DetailFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding = null
+        _binding = null
         super.onDestroy()
     }
 

@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import com.team2.contactapp.databinding.FragmentContactBinding
 
 class ContactFragment : Fragment() {
-    private var binding: FragmentContactBinding? = null
+    private var _binding: FragmentContactBinding? = null
+    private val binding get() = _binding!!
 
     private val listFragment = ListFragment.newInstance()
 
@@ -17,8 +18,8 @@ class ContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentContactBinding.inflate(inflater, container, false)
-        return binding?.root
+        _binding = FragmentContactBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +43,7 @@ class ContactFragment : Fragment() {
 
 
     override fun onDestroy() {
-        binding = null
+        _binding = null
         super.onDestroy()
     }
 

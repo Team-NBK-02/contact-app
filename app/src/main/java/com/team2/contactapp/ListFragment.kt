@@ -9,7 +9,8 @@ import com.team2.contactapp.databinding.FragmentListBinding
 
 
 class ListFragment : Fragment() {
-    private var binding: FragmentListBinding? = null
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +21,8 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentListBinding.inflate(inflater,container,false)
-        return binding?.root
+        _binding = FragmentListBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,7 +31,7 @@ class ListFragment : Fragment() {
         initViews()
     }
 
-    private fun initViews() = with(binding!!){
+    private fun initViews() = with(binding){
         button.setOnClickListener {
             if(parentFragment is ContactFragment){
                 (parentFragment as ContactFragment).moveDetailFragment(SampleData.userList[0])
@@ -39,7 +40,7 @@ class ListFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        binding = null
+        _binding = null
         super.onDestroy()
     }
 
