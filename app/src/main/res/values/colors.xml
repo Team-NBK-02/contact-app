@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color><!--기본 글자색-->
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_green">#93C3B5</color><!--버튼,tab,actionBar및 주요 UI색상-->
+    <color name="light_green">#D4E3DF</color><!--리사이클러뷰 아이템 등 배경색상-->
+    <color name="light_blue">#D4E3DF</color><!--다이얼로그,리사이클러뷰 아이템 등 배경색상-->
+    <color name="text_gray">#797979</color><!--다이얼로그,detail등 textColor-->
+    <color name="chip_back">#D9D9D9</color><!--chip ui 배경색-->
+</resources>
