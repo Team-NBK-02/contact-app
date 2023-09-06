@@ -13,14 +13,14 @@
     android:background="@drawable/background_image_view">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/user_image_view"
+        android:layout_width="87dp"
+        android:layout_height="87dp"
+        android:layout_marginLeft="24dp"
         android:src="@drawable/user_image_view"
-        android:layout_marginRight="230dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintBottom_toBottomOf="@+id/event_chip_layout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/event_chip_layout">
 
     </ImageView>
 
@@ -28,26 +28,25 @@
 
     <TextView
         android:id="@+id/event_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Event"
-        android:textColor="@color/text_gray"
+        android:layout_width="56dp"
+        android:layout_height="24dp"
+        android:text="event"
+        android:textColor="#7E807F"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="266dp"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/event_chip_layout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@+id/event_text_view"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/event_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/event_text_view">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/none_chip"
@@ -56,8 +55,9 @@
             app:chipStrokeColor="@color/chip_back"
             app:chipCornerRadius="16dp"
             android:text="none"
+            android:textSize="12dp"
             android:textColor="@color/text_gray"
-            android:backgroundTint="@color/chip_back"/>
+            android:backgroundTint="@color/chip_back" />
         <com.google.android.material.chip.Chip
             android:id="@+id/five_min_chip"
             android:layout_width="wrap_content"
@@ -66,18 +66,19 @@
             app:chipCornerRadius="16dp"
             android:layout_marginLeft="10dp"
             android:text="after 5min"
+            android:textSize="12dp"
             android:textColor="@color/text_gray"
             android:backgroundTint="@color/chip_back"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/event_chip_layout2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="90dp"
-        app:layout_constraintStart_toStartOf="@+id/event_text_view"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/event_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/event_chip_layout"
+        >
 
         <com.google.android.material.chip.Chip
             android:id="@+id/ten_min_chip"
@@ -86,6 +87,7 @@
             app:chipStrokeColor="@color/chip_back"
             app:chipCornerRadius="16dp"
             android:text="after 10min"
+            android:textSize="12dp"
             android:textColor="@color/text_gray"
             android:backgroundTint="@color/chip_back"/>
 
@@ -95,6 +97,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/chip_back"
             android:text="after 30min"
+            android:textSize="12dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/text_gray"
             app:chipCornerRadius="16dp"
@@ -105,16 +108,15 @@
 
     <TextView
         android:id="@+id/name_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="57dp"
+        android:layout_height="24dp"
         android:text="Name"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="-285dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/user_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/user_image_view">
 
     </TextView>
 
@@ -123,21 +125,19 @@
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         app:hintAnimationEnabled="true"
-        android:hint="input name..."
+        android:hint="input name.."
         android:textColorHint="@color/text_gray"
-        android:layout_marginTop="180dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" >
+        app:layout_constraintStart_toStartOf="@+id/name_text_view"
+        app:layout_constraintTop_toBottomOf="@id/name_text_view">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" >
+            android:textSize="20dp"
+            android:textAppearance="@style/hintTextStyle"
+            >
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -146,16 +146,16 @@
 
 
     <TextView
+        android:id="@+id/phone_number_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginTop="250dp"
-        app:layout_constraintStart_toStartOf="@id/name_text_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/name_input_layout"
+        app:layout_constraintTop_toBottomOf="@id/name_input_layout">
 
     </TextView>
 
@@ -163,24 +163,18 @@
         android:id="@+id/phone_number_input_layout"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        android:layout_marginTop="280dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" >
+        android:hint="input phone number.."
+        android:textColorHint="@color/text_gray"
+        app:layout_constraintStart_toStartOf="@id/phone_number_text_view"
+        app:layout_constraintTop_toBottomOf="@id/phone_number_text_view">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phone_number_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="input phone number..."
             android:background="@drawable/edittext_background"
-            android:textColorHint="@color/text_gray"
-            app:hintAnimationEnabled="true"
-            app:counterEnabled="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" >
+            android:textSize="20dp"
+            android:textAppearance="@style/hintTextStyle">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -189,16 +183,16 @@
 
 
     <TextView
+        android:id="@+id/email_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="20dp"
-        android:layout_marginTop="350dp"
-        app:layout_constraintStart_toStartOf="@id/name_text_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/phone_number_input_layout"
+        app:layout_constraintTop_toBottomOf="@id/phone_number_input_layout">
 
     </TextView>
 
@@ -206,42 +200,37 @@
         android:id="@+id/email_input_layout"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
-        app:errorEnabled="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" >
+        app:hintAnimationEnabled="true"
+        android:hint="input email..."
+        android:textColorHint="@color/text_gray"
+        app:layout_constraintStart_toStartOf="@id/email_text_view"
+        app:layout_constraintTop_toBottomOf="@id/email_text_view">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="input email..."
             android:background="@drawable/edittext_background"
-            android:textColorHint="@color/text_gray"
-            app:hintAnimationEnabled="true"
-            app:counterEnabled="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" >
+            android:textSize="20dp"
+            android:textAppearance="@style/hintTextStyle"
+            >
 
         </com.google.android.material.textfield.TextInputEditText>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <TextView
+        android:id="@+id/memo_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Memo"
-        android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginTop="450dp"
-        app:layout_constraintStart_toStartOf="@id/name_text_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/email_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/email_input_layout">
 
     </TextView>
 
@@ -249,62 +238,56 @@
         android:id="@+id/memo_input_layout"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        app:errorEnabled="true"
-        android:layout_marginTop="480dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" >
+        app:layout_constraintStart_toStartOf="@+id/memo_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/memo_text_view">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/memo_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintAnimationEnabled="true"
-            android:hint="test input memo..."
-            android:textStyle="bold"
             android:background="@drawable/edittext_background"
-            app:hintTextColor="@color/text_gray"
+            android:hint="test input memo..."
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             app:counterEnabled="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" >
+            app:hintAnimationEnabled="true"
+            app:hintTextColor="@color/text_gray">
 
         </com.google.android.material.textfield.TextInputEditText>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cancel_button"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button_background"
         android:text="cancel"
+        android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:background="@drawable/button_background"
-        android:layout_marginTop="580dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@id/name_text_view" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/memo_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/memo_input_layout" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/save_button"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button_background"
         android:text="save"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:background="@drawable/button_background"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cancel_button" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancel_button"
+        app:layout_constraintTop_toBottomOf="@+id/memo_input_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
