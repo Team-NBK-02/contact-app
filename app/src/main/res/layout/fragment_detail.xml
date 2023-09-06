@@ -17,11 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <View
+            <ImageView
                 android:id="@+id/background_view"
                 android:layout_width="match_parent"
-                android:layout_height="369dp"
-                android:background="@color/primary_green"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/pikachu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,26 +36,29 @@
 
                 <TextView
                     android:id="@+id/user_name_text_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:gravity="right"
                     android:text="TEST USER NAME"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/message_image_button" />
+                    app:layout_constraintEnd_toStartOf="@+id/message_image_button"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageButton
                     android:id="@+id/message_image_button"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="4dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitXY"
                     android:src="@drawable/message"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/call_image_button"
+                    app:layout_constraintTop_toTopOf="@+id/user_name_text_view"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageButton
@@ -68,6 +72,7 @@
                     android:src="@drawable/call"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/message_image_button"
                     tools:ignore="SpeakableTextPresentCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,6 +92,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:text="Mobile"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +122,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Email"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -145,6 +152,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Event"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -174,6 +182,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Memo"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
