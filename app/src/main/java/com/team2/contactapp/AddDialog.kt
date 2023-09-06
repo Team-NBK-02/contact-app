@@ -33,7 +33,7 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
     }
 
     private fun initViews() = with(binding){
-        button.setOnClickListener {
+        saveButton.setOnClickListener {
             addDialogInterface.onSaveButtonClicked()
             dismiss()
         }
