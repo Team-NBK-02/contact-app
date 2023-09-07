@@ -26,6 +26,8 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         addAll(userList)
     }
 
+    fun copyOf(currentType: Int) : UserRecyclerViewAdapter = UserRecyclerViewAdapter(userArrayList,currentType,clickListener)
+
     inner class ViewHolderLinearType1(private val binding: ItemRecylerViewLinearType1Binding) :
         RecyclerView.ViewHolder(binding.root), CustomViewHolder {
         override var mUser: User? = null

@@ -23,15 +23,17 @@ import com.team2.contactapp.databinding.FragmentListBinding
 class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val onClickEventListener = object : UserRecyclerViewAdapter.OnClickEventListener {
-        override fun onItemClick(user: User) {
-            if (parentFragment is ContactFragment) {
-                (parentFragment as ContactFragment).moveDetailFragment(user)
-            }
-        }
-    }
     private var userRecyclerViewAdapter =
-        UserRecyclerViewAdapter(SampleData.userList, LINEAR_TYPE, onClickEventListener)
+        UserRecyclerViewAdapter(
+            SampleData.userList,
+            LINEAR_TYPE,
+            object : UserRecyclerViewAdapter.OnClickEventListener {
+                override fun onItemClick(user: User) {
+                    if (parentFragment is ContactFragment) {
+                        (parentFragment as ContactFragment).moveDetailFragment(user)
+                    }
+                }
+            })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,27 +164,17 @@ class ListFragment : Fragment() {
     }
 
     fun changeLayoutManager(type: Int) = with(binding) {
-        if(userRecyclerViewAdapter.currentType == type) return@with
+        if (userRecyclerViewAdapter.currentType == type) return@with
         when (type) {
             LINEAR_TYPE -> {
                 userRecyclerView.layoutManager = LinearLayoutManager(this@ListFragment.context)
-                userRecyclerViewAdapter =
-                    UserRecyclerViewAdapter(
-                        userRecyclerViewAdapter.userArrayList,
-                        LINEAR_TYPE,
-                        onClickEventListener
-                    )
+                userRecyclerViewAdapter = userRecyclerViewAdapter.copyOf(LINEAR_TYPE)
                 userRecyclerView.adapter = userRecyclerViewAdapter
             }
 
             GRID_TYPE -> {
                 userRecyclerView.layoutManager = GridLayoutManager(this@ListFragment.context, 2)
-                userRecyclerViewAdapter =
-                    UserRecyclerViewAdapter(
-                        userRecyclerViewAdapter.userArrayList,
-                        GRID_TYPE,
-                        onClickEventListener
-                    )
+                userRecyclerViewAdapter = userRecyclerViewAdapter.copyOf(GRID_TYPE)
                 userRecyclerView.adapter = userRecyclerViewAdapter
             }
         }
