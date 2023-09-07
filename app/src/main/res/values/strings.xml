@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">Contact App</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="event_text_view">event</string>
+    <string name="none_chip">none</string>
+    <string name="after_5min">after 5min</string>
+    <string name="after_10min">after 10min</string>
+    <string name="after_30min">after 30min</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="memo">Memo</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_button">Save</string>
+    <string name="user_image">User Image</string>
+    <string name="input_name">input name..</string>
+    <string name="input_phone_number">input phone number..</string>
+    <string name="input_email">input email..</string>
+    <string name="test_input_memo">test input memo...</string>
+
 </resources>
