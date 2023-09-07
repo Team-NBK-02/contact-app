@@ -1,11 +1,17 @@
 package com.team2.contactapp
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.team2.contactapp.databinding.FragmentDetailBinding
 
 private const val ARG_PARAM1 = "User"
@@ -43,6 +49,19 @@ class DetailFragment : Fragment() {
         binding.eventTextView.text = user?.event
         binding.memoTextView.text = user?.memo
         initViews()
+
+        val context = this@DetailFragment.context
+        binding.callImageButton.setOnClickListener {
+            val phoneNumber = user?.phoneNumber
+            val callUriSwipedPerson = Uri.parse("tel:$phoneNumber")
+            val callIntent = Intent(Intent.ACTION_CALL, callUriSwipedPerson)
+            if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.CALL_PHONE) } != PackageManager.PERMISSION_GRANTED) {
+                // 권한이 부여되지 않았으므로 권한을 요청합니다.
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CALL_PHONE), 1)
+            } else {
+                context.startActivity(callIntent)
+            }
+        }
     }
 
     private fun initViews() = with(binding) {
