@@ -18,11 +18,11 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/background_view"
+                android:id="@+id/user_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:src="@drawable/jjanggu"
                 android:adjustViewBounds="true"
-                android:src="@drawable/pikachu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,15 +38,13 @@
                     android:id="@+id/user_name_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:text="TEST USER NAME"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/message_image_button"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageButton
