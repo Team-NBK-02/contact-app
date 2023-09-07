@@ -2,6 +2,9 @@ package com.team2.contactapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toolbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.team2.contactapp.databinding.ActivityMainBinding
 
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() = with(binding) {
+        setSupportActionBar(mainToolbar)
         mainToolbar.title = "SpartaContacts"
         mainViewpager.adapter = viewPagerAdapter
 
@@ -37,6 +41,23 @@ class MainActivity : AppCompatActivity() {
             })
             addDialog.show(this@MainActivity.supportFragmentManager,"ConfirmDialog")
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_recycler_view,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.linear -> {
+                viewPagerAdapter.changeLayoutManager(ListFragment.LINEAR_TYPE)
+            }
+            R.id.grid -> {
+                viewPagerAdapter.changeLayoutManager(ListFragment.GRID_TYPE)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
