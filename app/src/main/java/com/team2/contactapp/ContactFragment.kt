@@ -47,6 +47,10 @@ class ContactFragment : Fragment() {
         super.onDestroy()
     }
 
+    fun changeLayoutManager(type: Int) {
+        listFragment.changeLayoutManager(type)
+    }
+
     companion object {
         fun newInstance() = ContactFragment()
     }
