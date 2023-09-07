@@ -36,7 +36,12 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.userImageView.setImageResource(user!!.imgRes)
+        binding.userNameTextView.text = user?.name
+        binding.mobileTextView.text = user?.phoneNumber
+        binding.emailTextView.text = user?.email
+        binding.eventTextView.text = user?.event
+        binding.memoTextView.text = user?.memo
         initViews()
     }
 
