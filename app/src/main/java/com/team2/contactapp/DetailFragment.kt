@@ -53,13 +53,23 @@ class DetailFragment : Fragment() {
         val context = this@DetailFragment.context
         binding.callImageButton.setOnClickListener {
             val phoneNumber = user?.phoneNumber
-            val callUriSwipedPerson = Uri.parse("tel:$phoneNumber")
-            val callIntent = Intent(Intent.ACTION_CALL, callUriSwipedPerson)
+            val callUri = Uri.parse("tel:$phoneNumber")
+            val callIntent = Intent(Intent.ACTION_CALL, callUri)
             if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.CALL_PHONE) } != PackageManager.PERMISSION_GRANTED) {
                 // 권한이 부여되지 않았으므로 권한을 요청합니다.
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CALL_PHONE), 1)
             } else {
                 context.startActivity(callIntent)
+            }
+        }
+        binding.messageImageButton.setOnClickListener {
+            val phoneNumber = user?.phoneNumber
+            val messageUri = Uri.parse("sms:$phoneNumber")
+            val messageIntent = Intent(Intent.ACTION_SENDTO,messageUri)
+            if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.SEND_SMS) } != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS), 1)
+            } else {
+                context.startActivity(messageIntent)
             }
         }
     }
