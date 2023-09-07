@@ -6,7 +6,7 @@
     </style>
 
     <style name="hintTextStyle">
-        <item name="android:textStyle"></item>
+        <!--<item name="android:textStyle"></item>-->
         <item name="android:textColor">#7E807F</item>
         <item name="android:textSize">20sp</item>
     </style>
