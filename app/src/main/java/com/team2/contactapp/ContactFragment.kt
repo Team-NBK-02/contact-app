@@ -51,6 +51,10 @@ class ContactFragment : Fragment() {
         listFragment.changeLayoutManager(type)
     }
 
+    fun addUser(user: User) {
+        listFragment.addUser(user)
+    }
+
     companion object {
         fun newInstance() = ContactFragment()
     }

@@ -10,9 +10,11 @@ class ViewPagerAdapter(
 
     private val fragments = ArrayList<MainTabs>()
     private val contactFragment = ContactFragment.newInstance()
+
+
     init {
-        fragments.add(MainTabs(contactFragment,"Contact"))
-        fragments.add(MainTabs(DetailFragment.newInstance(SampleData.userList[0]),"My Page"))
+        fragments.add(MainTabs(contactFragment, "Contact"))
+        fragments.add(MainTabs(DetailFragment.newInstance(SampleData.userList[0]), "My Page"))
     }
 
     fun getTitle(position: Int): String {
@@ -24,10 +26,15 @@ class ViewPagerAdapter(
         return fragments.size
     }
 
-    fun changeLayoutManager(type : Int){
+    fun changeLayoutManager(type: Int) {
         contactFragment.changeLayoutManager(type)
     }
-    fun getFragment(position: Int) : Fragment = fragments[position].fragment
+
+    fun addUser(user: User) {
+        contactFragment.addUser(user)
+    }
+
+    fun getFragment(position: Int): Fragment = fragments[position].fragment
 
     override fun createFragment(position: Int): Fragment {
         return getFragment(position)

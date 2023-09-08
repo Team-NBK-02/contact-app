@@ -180,6 +180,10 @@ class ListFragment : Fragment() {
         }
     }
 
+    fun addUser(user: User) {
+        userRecyclerViewAdapter.addUser(user)
+    }
+
     companion object {
         const val LINEAR_TYPE = 0
         const val GRID_TYPE = 1
