@@ -1,11 +1,10 @@
 package com.team2.contactapp
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.team2.contactapp.Util.phoneNumFormat
 import com.team2.contactapp.databinding.ItemRecylerViewGridType1Binding
 import com.team2.contactapp.databinding.ItemRecylerViewGridType2Binding
 import com.team2.contactapp.databinding.ItemRecylerViewLinearType1Binding
@@ -88,7 +87,7 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         override fun bind(user: User, pos: Int) = with(binding) {
             mUser = user
             profileImageView.setImageResource(user.imgRes)
-            phoneNumberTextView.text = user.phoneNumber
+            phoneNumberTextView.text = user.phoneNumber.phoneNumFormat()
             nameTextView.text = user.name
             root.setOnClickListener { clickListener.onItemClick(user) }
 
@@ -114,7 +113,7 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         override fun bind(user: User, pos: Int) = with(binding) {
             mUser = user
             profileImageView.setImageResource(user.imgRes)
-            phoneNumberTextView.text = user.phoneNumber
+            phoneNumberTextView.text = user.phoneNumber.phoneNumFormat()
             nameTextView.text = user.name
             root.setOnClickListener { clickListener.onItemClick(user) }
 
@@ -199,7 +198,6 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
     }
 
     companion object {
-        private const val TAG = "UserRecyclerViewAdapter"
         private const val TYPE1 = 0
         private const val TYPE2 = 1
     }
