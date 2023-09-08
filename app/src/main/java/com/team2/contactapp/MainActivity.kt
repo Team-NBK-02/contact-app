@@ -16,12 +16,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -95,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         floatingActionButton.setOnClickListener {
             var delay: Int = 0
-            val addDialog = AddDialog(object : AddDialog.AddDialogInterface{
+            val addDialog = AddDialog(object : AddDialog.AddDialogInterface {
 
                 override fun eventClicked(eventDelay: Int) {
                     delay = eventDelay
@@ -103,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onSaveButtonClicked(user: User) {
                     viewPagerAdapter.addUser(user)
-                    if (delay != 0){
+                    if (delay != 0) {
                         scheduleNotification(delay)
                     }
 
@@ -169,7 +165,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onBackPressed() {
         val currentFragment = viewPagerAdapter.getFragment(binding.mainTab.selectedTabPosition)
         if (currentFragment is ContactFragment && currentFragment.childFragmentManager.backStackEntryCount >= 1) {
@@ -178,6 +173,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
     private fun notification() { // 종모양을 누르면 알림 발생
         val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val builder: NotificationCompat.Builder
@@ -210,9 +206,9 @@ class MainActivity : AppCompatActivity() {
             setContentTitle("키워드 알림")
             setContentText("설정한 키워드에 대한 알림이 도착했습니다!!")
         }
-
         manager.notify(11, builder.build())
     }
+
     private fun scheduleNotification(delayInMillis: Int) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
