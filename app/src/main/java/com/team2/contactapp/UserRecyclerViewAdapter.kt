@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.team2.contactapp.databinding.ItemRecylerViewGridType1Binding
 import com.team2.contactapp.databinding.ItemRecylerViewGridType2Binding
@@ -19,7 +20,7 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
     interface CustomViewHolder {
         var mUser: User?
         val swipeView: View
-        fun bind(user: User)
+        fun bind(user: User, pos: Int)
     }
 
     val userArrayList = ArrayList<User>().apply {
@@ -33,11 +34,24 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         override var mUser: User? = null
         override val swipeView: View = binding.swipeItemLayout
 
-        override fun bind(user: User) = with(binding) {
+        override fun bind(user: User, pos: Int) = with(binding) {
             mUser = user
             profileImageView.setImageResource(user.imgRes)
             nameTextView.text = user.name
             root.setOnClickListener { clickListener.onItemClick(user) }
+
+            favoriteImageView.isSelected = user.isLike
+            favoriteImageView.setOnClickListener {
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -45,11 +59,24 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         RecyclerView.ViewHolder(binding.root), CustomViewHolder {
         override var mUser: User? = null
         override val swipeView: View = binding.swipeItemLayout
-        override fun bind(user: User) = with(binding) {
+        override fun bind(user: User, pos: Int) = with(binding) {
             mUser = user
             profileImageView.setImageResource(user.imgRes)
             nameTextView.text = user.name
             root.setOnClickListener { clickListener.onItemClick(user) }
+
+            favoriteImageView.isSelected = user.isLike
+            favoriteImageView.setOnClickListener {
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -58,12 +85,25 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         override var mUser: User? = null
         override val swipeView: View = binding.swipeItemLayout
 
-        override fun bind(user: User) = with(binding) {
+        override fun bind(user: User, pos: Int) = with(binding) {
             mUser = user
             profileImageView.setImageResource(user.imgRes)
             phoneNumberTextView.text = user.phoneNumber
             nameTextView.text = user.name
             root.setOnClickListener { clickListener.onItemClick(user) }
+
+            favoriteImageView.isSelected = user.isLike
+            favoriteImageView.setOnClickListener {
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -71,12 +111,25 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         RecyclerView.ViewHolder(binding.root), CustomViewHolder {
         override var mUser: User? = null
         override val swipeView: View = binding.swipeItemLayout
-        override fun bind(user: User) = with(binding) {
+        override fun bind(user: User, pos: Int) = with(binding) {
             mUser = user
             profileImageView.setImageResource(user.imgRes)
             phoneNumberTextView.text = user.phoneNumber
             nameTextView.text = user.name
             root.setOnClickListener { clickListener.onItemClick(user) }
+
+            favoriteImageView.isSelected = user.isLike
+            favoriteImageView.setOnClickListener {
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
+            }
         }
     }
 
@@ -138,7 +191,7 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is CustomViewHolder) holder.bind(user = userArrayList[position])
+        if (holder is CustomViewHolder) holder.bind(user = userArrayList[position], pos = position)
     }
 
     fun isInUserList(name: String?, phoneNumber: String?): Boolean {
@@ -149,6 +202,12 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         private const val TAG = "UserRecyclerViewAdapter"
         private const val TYPE1 = 0
         private const val TYPE2 = 1
+    }
+
+
+    fun addUser(user: User) {
+        userArrayList.add(user)
+        notifyItemInserted(userArrayList.lastIndex)
     }
 
 }
