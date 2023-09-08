@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.team2.contactapp.Util.phoneNumFormat
 import com.team2.contactapp.databinding.FragmentDetailBinding
 
 private const val ARG_PARAM1 = "User"
@@ -42,15 +43,18 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initViews()
+    }
+
+    private fun initViews() = with(binding) {
         binding.userImageView.setImageResource(user!!.imgRes)
         binding.userNameTextView.text = user?.name
-        binding.mobileTextView.text = user?.phoneNumber
+        binding.mobileTextView.text = user?.phoneNumber?.phoneNumFormat()
         binding.emailTextView.text = user?.email
         binding.eventTextView.text = user?.event
         binding.memoTextView.text = user?.memo
-        initViews()
 
-        val context = this@DetailFragment.context
         binding.callImageButton.setOnClickListener {
             val phoneNumber = user?.phoneNumber
             val callUri = Uri.parse("tel:$phoneNumber")
@@ -59,7 +63,7 @@ class DetailFragment : Fragment() {
                 // 권한이 부여되지 않았으므로 권한을 요청합니다.
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CALL_PHONE), 1)
             } else {
-                context.startActivity(callIntent)
+                requireContext().startActivity(callIntent)
             }
         }
         binding.messageImageButton.setOnClickListener {
@@ -69,13 +73,9 @@ class DetailFragment : Fragment() {
             if (context?.let { it1 -> ContextCompat.checkSelfPermission(it1, Manifest.permission.SEND_SMS) } != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS), 1)
             } else {
-                context.startActivity(messageIntent)
+                requireContext().startActivity(messageIntent)
             }
         }
-    }
-
-    private fun initViews() = with(binding) {
-
     }
 
     override fun onDestroy() {

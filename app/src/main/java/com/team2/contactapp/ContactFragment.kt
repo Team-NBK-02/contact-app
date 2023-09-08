@@ -10,9 +10,7 @@ import com.team2.contactapp.databinding.FragmentContactBinding
 class ContactFragment : Fragment() {
     private var _binding: FragmentContactBinding? = null
     private val binding get() = _binding!!
-
     private val listFragment = ListFragment.newInstance()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,23 +39,24 @@ class ContactFragment : Fragment() {
         transaction.commit()
     }
 
+    fun changeLayoutManager(type: Int) {
+        listFragment.changeLayoutManager(type)
+    }
+
+    fun isInUserList(name: String?, phoneNumber: String?): Boolean {
+        return listFragment.isInUserList(name, phoneNumber)
+    }
+
+    fun addUser(user: User) {
+        listFragment.addUser(user)
+    }
 
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
     }
 
-    fun changeLayoutManager(type: Int) {
-        listFragment.changeLayoutManager(type)
-    }
 
-    fun isInUserList(name: String?, phoneNumber: String?) : Boolean {
-        return listFragment.isInUserList(name,phoneNumber)
-    }
-    
-    fun addUser(user: User) {
-        listFragment.addUser(user)
-    }
 
     companion object {
         fun newInstance() = ContactFragment()
