@@ -5,11 +5,17 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User(
-    //val id : Int,
+
     val name : String,
     val imgRes : Int,
     val phoneNumber: String,
     val email : String,
     val event : String,
     val memo : String,
-) : Parcelable
+    val isLike : Boolean = false,
+    val id : Int = saveId++
+) : Parcelable {
+    companion object {
+        private var saveId = 0
+    }
+}
