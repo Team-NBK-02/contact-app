@@ -6,4 +6,7 @@
     <item
         android:id="@+id/grid"
         android:title="Grid"/>
+    <item
+        android:id="@+id/borrow"
+        android:title="Borrow"/>
 </menu>

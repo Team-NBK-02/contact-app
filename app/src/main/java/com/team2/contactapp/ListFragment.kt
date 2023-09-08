@@ -180,6 +180,10 @@ class ListFragment : Fragment() {
         }
     }
 
+    fun isInUserList(name: String?, phoneNumber: String?) : Boolean {
+        return userRecyclerViewAdapter.isInUserList(name,phoneNumber)
+    }
+
     companion object {
         const val LINEAR_TYPE = 0
         const val GRID_TYPE = 1

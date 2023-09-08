@@ -51,6 +51,10 @@ class ContactFragment : Fragment() {
         listFragment.changeLayoutManager(type)
     }
 
+    fun isInUserList(name: String?, phoneNumber: String?) : Boolean {
+        return listFragment.isInUserList(name,phoneNumber)
+    }
+
     companion object {
         fun newInstance() = ContactFragment()
     }
