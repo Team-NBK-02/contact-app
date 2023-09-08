@@ -1,14 +1,9 @@
 package com.team2.contactapp
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.media.AudioAttributes
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -19,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.core.app.NotificationCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import com.team2.contactapp.databinding.DialogAddBinding
@@ -30,12 +24,11 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
     var nameRange = false
     private var phoneNumberType = false
     var emailType = false
-    var eventNumber = 0
 
 
     interface AddDialogInterface{
-        fun onSaveButtonClicked(user: User)
         fun eventClicked(eventNumber: Int)
+        fun onSaveButtonClicked(user: User)
     }
 
     override fun onCreateView(
@@ -54,6 +47,8 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
     }
 
     private fun initViews() = with(binding){
+
+        var delay = 0
 
         noneImageView.isSelected = true
 
@@ -108,19 +103,22 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
 
         })
 
+
+
         saveButton.setOnClickListener {
             val name = nameInputEditText.text.toString()
             val phoneNumber = phoneInputEditText.text.toString()
             val email = emailInputEditText.text.toString()
+            val image = R.drawable.ic_launcher_foreground
             val memo = memoInputEditText.text.toString()
             val user: User
+
             if(name.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || memo.isEmpty() || !nameRange || !phoneNumberType || !emailType){
                 Toast.makeText(requireContext(), "형식에 맞춰서 작성을 해주세요!!", Toast.LENGTH_SHORT).show()
             }else{
-                user = User(name, R.drawable.ic_launcher_foreground, phoneNumber, email, "", memo)
+                user = User(name, image, phoneNumber, email, "", memo)
+                addDialogInterface.eventClicked(delay)
                 addDialogInterface.onSaveButtonClicked(user)
-                addDialogInterface.eventClicked(eventNumber)
-
                 dismiss()
 
             }
@@ -133,28 +131,28 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
             fiveMinView.isSelected = false
             tenMinImageView.isSelected = false
             thirtyMinImageView.isSelected = false
-            eventNumber = 0
+            delay = 0
         }
         fiveMinView.setOnClickListener {
             noneImageView.isSelected = false
             fiveMinView.isSelected = true
             tenMinImageView.isSelected = false
             thirtyMinImageView.isSelected = false
-            eventNumber = 1
+            delay = 10000
         }
         tenMinImageView.setOnClickListener {
             noneImageView.isSelected = false
             fiveMinView.isSelected = false
             tenMinImageView.isSelected = true
             thirtyMinImageView.isSelected = false
-            eventNumber = 2
+            delay = 600000
         }
         thirtyMinImageView.setOnClickListener {
             fiveMinView.isSelected = false
             noneImageView.isSelected = false
             tenMinImageView.isSelected = false
             thirtyMinImageView.isSelected = true
-            eventNumber = 3
+            delay = 1800000
         }
     }
 
