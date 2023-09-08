@@ -3,22 +3,18 @@ package com.team2.contactapp
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Canvas
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.team2.contactapp.databinding.FragmentListBinding
-
 
 class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
@@ -34,10 +30,6 @@ class ListFragment : Fragment() {
                     }
                 }
             })
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -105,9 +97,10 @@ class ListFragment : Fragment() {
         }
     }
 
-    fun isInUserList(name: String?, phoneNumber: String?) : Boolean {
-        return userRecyclerViewAdapter.isInUserList(name,phoneNumber)
+    fun isInUserList(name: String?, phoneNumber: String?): Boolean {
+        return userRecyclerViewAdapter.isInUserList(name, phoneNumber)
     }
+
     fun addUser(user: User) {
         userRecyclerViewAdapter.addUser(user)
     }
