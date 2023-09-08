@@ -42,7 +42,15 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
 
             favoriteImageView.isSelected = user.isLike
             favoriteImageView.setOnClickListener {
-
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
             }
         }
     }
@@ -59,7 +67,15 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
 
             favoriteImageView.isSelected = user.isLike
             favoriteImageView.setOnClickListener {
-
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
             }
         }
     }
@@ -78,7 +94,15 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
 
             favoriteImageView.isSelected = user.isLike
             favoriteImageView.setOnClickListener {
-
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
             }
         }
     }
@@ -96,7 +120,15 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
 
             favoriteImageView.isSelected = user.isLike
             favoriteImageView.setOnClickListener {
-
+                val changedUser = user.copy(isLike = !user.isLike)
+                userArrayList[pos] = changedUser
+                userArrayList.sortWith(
+                    compareBy(
+                        {!it.isLike},
+                        {it.id}
+                    )
+                )
+                notifyDataSetChanged()
             }
         }
     }
