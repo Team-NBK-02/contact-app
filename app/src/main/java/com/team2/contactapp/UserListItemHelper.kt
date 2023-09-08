@@ -1,21 +1,19 @@
 package com.team2.contactapp
 
-import android.Manifest
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Canvas
-import android.net.Uri
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class UserListItemHelper(private val context : Context,private val requsetPermission:(pos:Int)->(Unit)) : ItemTouchHelper.Callback() {
-    companion object{
+class UserListItemHelper(
+    private val context: Context,
+    private val requsetPermission: (pos: Int) -> (Unit),
+) : ItemTouchHelper.Callback() {
+    companion object {
         private const val TAG = "UserListItemHelper"
     }
-    
+
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
@@ -41,6 +39,7 @@ class UserListItemHelper(private val context : Context,private val requsetPermis
     override fun isItemViewSwipeEnabled(): Boolean {
         return true
     }
+
     override fun isLongPressDragEnabled(): Boolean {
         return false
     }
@@ -52,10 +51,10 @@ class UserListItemHelper(private val context : Context,private val requsetPermis
         dX: Float,
         dY: Float,
         actionState: Int,
-        isCurrentlyActive: Boolean
+        isCurrentlyActive: Boolean,
     ) {
         //super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && viewHolder is UserRecyclerViewAdapter.CustomViewHolder){
+        if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && viewHolder is UserRecyclerViewAdapter.CustomViewHolder) {
             val view = viewHolder.swipeView
             getDefaultUIUtil().onDraw(c, recyclerView, view, dX, dY, actionState, isCurrentlyActive)
         }
@@ -63,7 +62,7 @@ class UserListItemHelper(private val context : Context,private val requsetPermis
 
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         Log.d(TAG, "clearView: ")
-        getDefaultUIUtil().clearView((viewHolder as  UserRecyclerViewAdapter.CustomViewHolder).swipeView)
+        getDefaultUIUtil().clearView((viewHolder as UserRecyclerViewAdapter.CustomViewHolder).swipeView)
     }
 
 }
