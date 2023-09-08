@@ -3,7 +3,9 @@ package com.team2.contactapp
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Point
+import android.graphics.drawable.ColorDrawable
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
@@ -28,10 +30,12 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
     var nameRange = false
     private var phoneNumberType = false
     var emailType = false
+    var eventNumber = 0
 
 
     interface AddDialogInterface{
         fun onSaveButtonClicked(user: User)
+        fun eventClicked(eventNumber: Int)
     }
 
     override fun onCreateView(
@@ -40,6 +44,7 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
         savedInstanceState: Bundle?
     ): View? {
         _binding = DialogAddBinding.inflate(layoutInflater,container,false)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return binding.root
     }
 
@@ -114,9 +119,8 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
             }else{
                 user = User(name, R.drawable.ic_launcher_foreground, phoneNumber, email, "", memo)
                 addDialogInterface.onSaveButtonClicked(user)
-                if(fiveMinView.isSelected){
-                    notification()
-                }
+                addDialogInterface.eventClicked(eventNumber)
+
                 dismiss()
 
             }
@@ -129,70 +133,36 @@ class AddDialog(private val addDialogInterface: AddDialogInterface) : DialogFrag
             fiveMinView.isSelected = false
             tenMinImageView.isSelected = false
             thirtyMinImageView.isSelected = false
+            eventNumber = 0
         }
         fiveMinView.setOnClickListener {
             noneImageView.isSelected = false
             fiveMinView.isSelected = true
             tenMinImageView.isSelected = false
             thirtyMinImageView.isSelected = false
+            eventNumber = 1
         }
         tenMinImageView.setOnClickListener {
             noneImageView.isSelected = false
             fiveMinView.isSelected = false
             tenMinImageView.isSelected = true
             thirtyMinImageView.isSelected = false
+            eventNumber = 2
         }
         thirtyMinImageView.setOnClickListener {
             fiveMinView.isSelected = false
             noneImageView.isSelected = false
             tenMinImageView.isSelected = false
             thirtyMinImageView.isSelected = true
+            eventNumber = 3
         }
     }
 
-    private fun notification() { // 종모양을 누르면 알림 발생
-        val manager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val builder: NotificationCompat.Builder
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "one-channel"
-            val channelName = "My channel One"
-            val channel = NotificationChannel(
-                channelId,
-                channelName,
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = "My Channel One Description"
-                setShowBadge(true)
-                val uri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                val audioAttributes = AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .setUsage(AudioAttributes.USAGE_ALARM)
-                    .build()
-                setSound(uri, audioAttributes)
-                enableVibration(true)
-            }
-            manager.createNotificationChannel(channel)
-            builder = NotificationCompat.Builder(requireContext(), channelId)
-        } else {
-            builder = NotificationCompat.Builder(requireContext())
-        }
-        builder.run {
-            setSmallIcon(R.mipmap.ic_launcher)
-            setWhen(System.currentTimeMillis())
-            setContentTitle("키워드 알림")
-            setContentText("설정한 키워드에 대한 알림이 도착했습니다!!")
-        }
-        val currentTimeMillis = System.currentTimeMillis()
-        val tenMinutesInMillis = 50000
-        val notifyTimeMillis = currentTimeMillis + tenMinutesInMillis
-        builder.setWhen(notifyTimeMillis)
 
-        manager.notify(11, builder.build())
-    }
 
     override fun onResume() {
         super.onResume()
-        requireContext().dialogFragmentResize(this, 1f, 0.8f)
+        requireContext().dialogFragmentResize(this, 0.9f, 0.8f)
     }
 
     private fun Context.dialogFragmentResize(dialogFragment: DialogFragment, width: Float, height: Float) {
