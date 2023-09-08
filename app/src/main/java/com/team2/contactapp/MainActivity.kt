@@ -1,10 +1,9 @@
 package com.team2.contactapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.team2.contactapp.databinding.ActivityMainBinding
 
@@ -35,8 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         floatingActionButton.setOnClickListener {
             val addDialog = AddDialog(object : AddDialog.AddDialogInterface{
-                override fun onSaveButtonClicked() {
-
+                override fun onSaveButtonClicked(user: User) {
+                    viewPagerAdapter.addUser(user)
                 }
             })
             addDialog.show(this@MainActivity.supportFragmentManager,"ConfirmDialog")

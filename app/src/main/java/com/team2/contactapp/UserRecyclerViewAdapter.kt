@@ -147,4 +147,10 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         private const val TYPE2 = 1
     }
 
+
+    fun addUser(user: User) {
+        userArrayList.add(user)
+        notifyItemInserted(userArrayList.lastIndex)
+    }
+
 }
