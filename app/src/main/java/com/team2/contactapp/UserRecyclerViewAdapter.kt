@@ -194,6 +194,10 @@ class UserRecyclerViewAdapter(userList: List<User>,val currentType:Int, val clic
         if (holder is CustomViewHolder) holder.bind(user = userArrayList[position], pos = position)
     }
 
+    fun isInUserList(name: String?, phoneNumber: String?): Boolean {
+        return userArrayList.any { it.name == name && it.phoneNumber == phoneNumber }
+    }
+
     companion object {
         private const val TAG = "UserRecyclerViewAdapter"
         private const val TYPE1 = 0

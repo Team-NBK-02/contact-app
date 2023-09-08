@@ -39,4 +39,8 @@ class ViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return getFragment(position)
     }
+
+    fun isInUserList(name: String?, phoneNumber: String?): Boolean {
+        return contactFragment.isInUserList(name,phoneNumber)
+    }
 }
